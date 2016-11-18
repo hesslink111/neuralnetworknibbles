@@ -1,8 +1,12 @@
 from random import *
 from domain.snake import Snake
+from util.encoding import Encoder
 
 
 class Generation:
+    """Domain class to contain a generation of snakes. Begins by creating a set of snakes based on the given gene
+    pool."""
+
     def __init__(self, genepool):
         self.genepool = genepool
         self.snakes = []
@@ -20,7 +24,7 @@ class Generation:
                 encoding_lottery.extend([snake]*numtickets)
 
         # Create 100 new snakes based on encoding lottery
-        numgenes = 256 * 130 * 1 + 130 * 3
+        numgenes = Encoder.encoding_length
         for i in range(20):                                 # Number of snakes
             encoding = []
             for j in range(0, 130 * 256, 256):                # Number of genes

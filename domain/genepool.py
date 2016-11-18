@@ -3,6 +3,8 @@ from util.encoding import Encoder
 
 
 class GenePool:
+    """Represents the highest evaluated snake encodings of all time. Stores a list of 100 snakes."""
+
     def __init__(self):
         self.snakes = []
         for i in range(100):

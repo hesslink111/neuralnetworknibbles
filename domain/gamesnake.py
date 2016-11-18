@@ -2,6 +2,9 @@ from domain.board import Position, Direction
 
 
 class GameSnake:
+    """Domain class for a snake game piece. Has knowledge of the game board. GameSnake has a list of BodyParts based
+        on the current size of the snake."""
+
     def __init__(self, board, xorshift, position=None):
         self.board = board
         self.xorshift = xorshift
@@ -75,5 +78,7 @@ class GameSnake:
 
 
 class BodyPart:
+    """Represents a segment of a snake. Has a position and nothing else."""
+
     def __init__(self, position):
         self.position = position

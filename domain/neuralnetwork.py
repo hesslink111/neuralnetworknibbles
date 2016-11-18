@@ -4,7 +4,12 @@ from domain.board import Position, Direction
 
 
 class SnakeNeuralNet:
-    def __init__(self, encoding, game_board, gamesnake, food):
+    """Class to represent the neural network of a given genetic encoding. Parts of the network require access to the
+        game board. To simulate the snake's perspective, this class requires knowledge of the gamesnake's orientation
+        and position. This class used to require the numeric position of the mouse, but that information has since been
+        encoded into the game board."""
+
+    def __init__(self, encoding, game_board, gamesnake, mouse):
         # Encoding is a 256*130*1 + 130*3 list of synapse values
         self.neurons = [[Neuron] * 256] + [[Neuron] * 130]
         self.neurons += [[Neuron] * 3]
@@ -16,13 +21,6 @@ class SnakeNeuralNet:
             for x in range(-8, 8):
                 self.neurons[0][i] = GameBoardRelativePositionStateNeuron(game_board, Position(x, y), gamesnake)
                 i += 1
-
-        # self.neurons[0][64] = PieceXPositionNeuron(gamesnake)
-        # self.neurons[0][65] = PieceYPositionNeuron(gamesnake)
-        # self.neurons[0][66] = PieceXPositionNeuron(food)
-        # self.neurons[0][67] = PieceYPositionNeuron(food)
-        # self.neurons[0][68] = PieceXDirectionNeuron(gamesnake)
-        # self.neurons[0][69] = PieceYDirectionNeuron(gamesnake)
 
         # Hidden neurons
         for i in range(1, 2):
@@ -74,6 +72,9 @@ class SnakeNeuralNet:
 
 
 class Synapse:
+    """Passes a signal from a neuron to another neuron. Contains a weight value which is used to produce output to the
+        containing neuron."""
+
     def __init__(self, input_neuron, weight):
         self.input_neuron = input_neuron
         self.weight = weight
@@ -83,6 +84,8 @@ class Synapse:
 
 
 class Neuron:
+    """Abstract class for a neuron in a neural network."""
+
     def __init__(self):
         self.result = 0
 
@@ -91,6 +94,8 @@ class Neuron:
 
 
 class PieceXPositionNeuron(Neuron):
+    """Deprecated class containing information of a snake's x position."""
+
     def __init__(self, piece):
         Neuron.__init__(self)
         self.piece = piece
@@ -100,6 +105,8 @@ class PieceXPositionNeuron(Neuron):
 
 
 class PieceYPositionNeuron(Neuron):
+    """Deprecated class containing information of a snake's y position."""
+
     def __init__(self, piece):
         Neuron.__init__(self)
         self.piece = piece
@@ -109,6 +116,8 @@ class PieceYPositionNeuron(Neuron):
 
 
 class PieceXDirectionNeuron(Neuron):
+    """Deprecated class containing information of a snake's x direction (right or left)."""
+
     def __init__(self, piece):
         Neuron.__init__(self)
         self.piece = piece
@@ -123,6 +132,8 @@ class PieceXDirectionNeuron(Neuron):
 
 
 class PieceYDirectionNeuron(Neuron):
+    """Deprecated class containing information of a snake's y direction (up or down)."""
+
     def __init__(self, piece):
         Neuron.__init__(self)
         self.piece = piece
@@ -137,6 +148,9 @@ class PieceYDirectionNeuron(Neuron):
 
 
 class GameBoardRelativePositionStateNeuron(Neuron):
+    """Input neuron class for sensing the position on the game board relative to the snake's position and
+        orientation."""
+
     def __init__(self, game_board, position, gamesnake):
         Neuron.__init__(self)
         self.game_board = game_board
@@ -144,19 +158,26 @@ class GameBoardRelativePositionStateNeuron(Neuron):
         self.gamesnake = gamesnake
 
     def calculate_result(self):
-        self.result = self.game_board.piece_at_x_y(self.position.x, self.position.y)
+        self.result = self.game_board.piece_at_x_y(self.position.x + self.gamesnake.position.x,
+                                                   self.position.y + self.gamesnake.position.y)
 
     def calculate_result_up(self):
-        self.result = self.game_board.piece_at_x_y(-self.position.y, self.position.x)
+        self.result = self.game_board.piece_at_x_y(-self.position.y + self.gamesnake.position.x,
+                                                   self.position.x + self.gamesnake.position.y)
 
     def calculate_result_left(self):
-        self.result = self.game_board.piece_at_x_y(-self.position.x, -self.position.y)
+        self.result = self.game_board.piece_at_x_y(-self.position.x + self.gamesnake.position.x,
+                                                   -self.position.y + self.gamesnake.position.y)
 
     def calculate_result_down(self):
-        self.result = self.game_board.piece_at_x_y(self.position.y, -self.position.x)
+        self.result = self.game_board.piece_at_x_y(self.position.y + self.gamesnake.position.x,
+                                                   -self.position.x + self.gamesnake.position.y)
 
 
 class SigmoidNeuron(Neuron):
+    """Represents a hidden neuron inside the neural network. Aggregates input from synapses, k, and generates a result
+        based on (1 / ( 1 + e^k )), which will be a number in the range of (0, 1)"""
+
     def __init__(self, synapses):
         Neuron.__init__(self)
         self.synapses = synapses
