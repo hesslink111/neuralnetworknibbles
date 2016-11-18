@@ -2,6 +2,9 @@ from tkinter import *
 
 
 class DashboardWindow:
+    """View class for the original main window of the program. This is mostly deprecated, but still contains the root
+        Tk instance needed to create any further Tk windows."""
+
     def __init__(self):
         self.listeners = []
 

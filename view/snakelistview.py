@@ -2,7 +2,10 @@ from tkinter import Toplevel, Label, Scrollbar, VERTICAL, W, S, E, N
 from tkinter.ttk import Treeview
 
 
-class SnakeList:
+class SnakeListView:
+    """View class for a window containing a scrollable list of snakes. Each snake should be selectable. Double clicking
+        a snake triggers a callback in any observers."""
+
     def __init__(self, title):
         self.snakes = []
 

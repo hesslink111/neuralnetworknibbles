@@ -1,5 +1,5 @@
 from controller.singlesimcontroller import SingleSimController
-from view.snakelist import SnakeList
+from view.snakelistview import SnakeListView
 
 
 class SnakeListController:
@@ -9,10 +9,10 @@ class SnakeListController:
     def __init__(self, simulation_service):
         self.simulation_service = simulation_service
 
-        self.generation_window = SnakeList("Generation")
+        self.generation_window = SnakeListView("Generation")
         self.generation_window.add_listener(self)
 
-        self.genepool_window = SnakeList("Gene Pool")
+        self.genepool_window = SnakeListView("Gene Pool")
         self.genepool_window.add_listener(self)
 
     def show_generation_window(self):

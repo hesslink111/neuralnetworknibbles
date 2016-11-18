@@ -2,6 +2,10 @@ from tkinter import Toplevel, LabelFrame, Label, Scale, Button, HORIZONTAL, N, W
 
 
 class SingleSimView:
+    """View class for a simulation of a single snake. This view contains controls for the simulation step interval and
+        buttons for starting, stopping, and stepping the simulation. The main view contains an 8x8 grid to show the
+        game board for the simulation."""
+
     def __init__(self):
         self.window = Toplevel(padx=5, pady=5)
         self.window.title("Simulation")

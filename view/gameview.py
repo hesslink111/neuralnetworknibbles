@@ -2,6 +2,10 @@ from tkinter import *
 
 
 class SimulationWindow:
+    """This is the class for the main window of the simulation. This view contains controls for the simulation step
+        interval and buttons for starting, stopping, and stepping the simulation. The main view contains an 8x8 grid
+        to show the game board for the simulation. This view has a panel for generation and gene pool information."""
+
     def __init__(self):
         self.window = Toplevel(padx=5, pady=5)
         self.window.title("Simulation")
