@@ -1,14 +1,11 @@
 from controller.gamecontroller import *
 
 
-class Game:
+def main():
+    # Create the game controller
+    game_controller = GameController()
 
-    def __init__(self):
-
-        # Create the game controller
-        game_controller = GameController()
-
-
-game = Game()
+if __name__ == "__main__":
+    main()
 
 
