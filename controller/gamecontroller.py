@@ -1,3 +1,6 @@
+from threading import Thread, Lock
+from time import sleep
+
 from controller.snakelistcontroller import SnakeListController
 from service.simulationservice import SimulationService
 from view.dashboard import *
@@ -7,8 +10,7 @@ from util.encoding import *
 
 class GameController:
     """Class for controlling the simulation and the game view. Starts by showing the deprecated view for generating
-        the first encoding. All views are instantiated in the main thread. Some functions are tied to the Tk 'after'
-        function. This dependency should be removed immediately and replaced with a python thread."""
+        the first encoding. All views are instantiated in the main thread."""
 
     def __init__(self):
 
@@ -22,6 +24,7 @@ class GameController:
         self.simulation_window.add_listener(self)
 
         self.simulation_step_loop_active = False
+        self.simulation_step_loop_lock = Lock()
         self.step_loop_interval = 5
         self.simulation_speed = 0
 
@@ -63,7 +66,9 @@ class GameController:
     def on_click_start(self):
         if not self.simulation_step_loop_active:
             self.simulation_step_loop_active = True
-            self.simulation_step_loop()
+            # self.simulation_step_loop()
+            simulation_step_loop_thread = Thread(target=self.simulation_step_loop)
+            simulation_step_loop_thread.start()
 
     def on_click_pause(self):
         self.simulation_step_loop_active = False
@@ -84,9 +89,11 @@ class GameController:
         self.simulation_speed = speed_value
 
     def simulation_step_loop(self):
-        if self.simulation_step_loop_active:
+        self.simulation_step_loop_lock.acquire()
+        while self.simulation_step_loop_active:
             self.simulation_step()
-            self.window.frame.after(self.step_loop_interval, self.simulation_step_loop)
+            sleep(self.step_loop_interval/1000)
+        self.simulation_step_loop_lock.release()
 
     def simulation_step(self):
         evaluation = self.simulation_service.current_snake_evaluation
