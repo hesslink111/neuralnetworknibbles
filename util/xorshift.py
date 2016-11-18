@@ -1,4 +1,7 @@
 class XorShift:
+    """Class for generating pseudo-random numbers based on a seed. This allows us to generate predictable sequences
+        so we can play the same games. Based on xorshift+ from https://en.wikipedia.org/wiki/Xorshift"""
+
     def __init__(self):
         self.state = [1921003817, 838877476]
 

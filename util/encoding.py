@@ -2,15 +2,18 @@ from random import *
 
 
 class Encoder:
+    """Class which contains static functions for generating genetic encodings for snakes."""
 
-    numlayers = 1
-    numinputs = 16
-    numhidden = 10
+    numinputs = 256
+    numhidden = 130
+    numoutputs = 3
+
+    encoding_length = numinputs * numhidden + numhidden * numoutputs
 
     @staticmethod
     def generate_encoding():
-        encoding = [0] * (256 * 130 * 1 + 130 * 3)
-        for i in range(256 * 130 * 1 + 130 * 3):
+        encoding = [0] * Encoder.encoding_length
+        for i in range(Encoder.encoding_length):
             encoding[i] = uniform(-1, 1)
 
         return encoding

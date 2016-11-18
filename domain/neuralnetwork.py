@@ -1,6 +1,5 @@
 from math import *
 from functools import reduce
-
 from domain.board import Position, Direction
 
 

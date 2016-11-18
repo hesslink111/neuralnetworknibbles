@@ -3,6 +3,8 @@ from view.singlesimview import SingleSimView
 
 
 class SingleSimController:
+    """Controller class for controlling the simulation of a single game for a single snake."""
+
     def __init__(self, snake):
         self.snake = snake
         self.evaluation = Evaluation(snake)

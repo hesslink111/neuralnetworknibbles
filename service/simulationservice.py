@@ -4,6 +4,8 @@ from domain.generation import Generation
 
 
 class SimulationService:
+    """Service class for maintaining the gene pool, the current generation, and the current snake evaluation."""
+
     def __init__(self):
 
         # Save best snakes

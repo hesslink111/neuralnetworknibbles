@@ -6,6 +6,10 @@ from util.encoding import *
 
 
 class GameController:
+    """Class for controlling the simulation and the game view. Starts by showing the deprecated view for generating
+        the first encoding. All views are instantiated in the main thread. Some functions are tied to the Tk 'after'
+        function. This dependency should be removed immediately and replaced with a python thread."""
+
     def __init__(self):
 
         # Initialize services

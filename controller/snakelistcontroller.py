@@ -3,13 +3,16 @@ from view.snakelist import SnakeList
 
 
 class SnakeListController:
+    """Controller for a Generation and Gene Pool snake list views. Can instantiate a SingleSimController to simulate
+        a selected snake."""
+
     def __init__(self, simulation_service):
         self.simulation_service = simulation_service
 
         self.generation_window = SnakeList("Generation")
         self.generation_window.add_listener(self)
 
-        self.genepool_window = SnakeList("Genepool")
+        self.genepool_window = SnakeList("Gene Pool")
         self.genepool_window.add_listener(self)
 
     def show_generation_window(self):
