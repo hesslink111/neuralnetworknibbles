@@ -15,7 +15,7 @@ Neural Network Nibbles is an environment for evolving simulated brains that play
 
 The neural network for a snake is a three-layer feed-forward graph of neurons, with each node of each layer connected to each node of the previous layer by synapses. Neurons aggregate signals from the previous layer, while synapses apply a weight in the range of (-1, 1) to the signal they carry from one neuron to another.
 
-The first layer of neurons consists of inputs based on the state of each position on the game board. An empty space is represented as a 0, a snake segmented is a -1, and a mouse is a 1. The inputs on this layer are configured to match the perspective of the simulated snake. As the snake moves, its perspective stays centered on its head, and rotates to match its orientation.
+The first layer of neurons consists of inputs based on the state of each position on the game board. An empty space is represented as a 0, a snake segment is a -1, and a mouse is a 1. The inputs on this layer are configured to match the perspective of the simulated snake. As the snake moves, its perspective stays centered on its head, and rotates to match its orientation.
 
 The second/hidden layer contains sigmoid neurons, who sum the input of their synapses and apply the function (1 / ( 1 + e^k )), which results in a new output in the range of (0, 1).
 
