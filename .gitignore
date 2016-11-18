@@ -1,2 +1,8 @@
 .DS_Store
 
+.idea/
+controller/__pycache__/
+domain/__pycache__/
+service/__pycache__/
+util/__pycache__/
+view/__pycache__/
