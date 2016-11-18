@@ -17,7 +17,7 @@ The neural network for a snake is a three-layer feed-forward graph of neurons, w
 
 The first layer of neurons consists of inputs based on the state of each position on the game board. An empty space is represented as a 0, a snake segmented is a -1, and a mouse is a 1. The inputs on this layer are configured to match the perspective of the simulated snake. As the snake moves, its perspective stays centered on its head, and rotates to match its orientation.
 
-The second/hidden layer contains sigmoid neurons, who sum the input of their synapses and apply the function (1 / 1 + e^k), which results in a new output in the range of (0, 1).
+The second/hidden layer contains sigmoid neurons, who sum the input of their synapses and apply the function (1 / ( 1 + e^k )), which results in a new output in the range of (0, 1).
 
 The final layer has three neurons representing the movement decision made by the snake. The possible moves are to turn right, left, or continue straight.
 
