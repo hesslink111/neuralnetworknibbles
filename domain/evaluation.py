@@ -72,8 +72,9 @@ class Game:
         if self.moves > 500:
             self.finished = True
 
-        if self.board.is_piece_at(self.gamesnake.position):
-            if self.gamesnake.position.x == self.mouse.position.x and self.gamesnake.position.y == self.mouse.position.y:
+        if self.board.piece_at(self.gamesnake.position) == -1 or self.board.piece_at(self.gamesnake.position) == 1:
+            if (self.gamesnake.position.x == self.mouse.position.x
+                    and self.gamesnake.position.y == self.mouse.position):
                 self.size += 1
                 self.states_reached = []
                 if self.size < 64:

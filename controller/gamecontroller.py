@@ -66,7 +66,6 @@ class GameController:
     def on_click_start(self):
         if not self.simulation_step_loop_active:
             self.simulation_step_loop_active = True
-            # self.simulation_step_loop()
             simulation_step_loop_thread = Thread(target=self.simulation_step_loop)
             simulation_step_loop_thread.start()
 

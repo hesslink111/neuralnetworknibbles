@@ -1,4 +1,4 @@
-from tkinter import Toplevel, Label, Scrollbar, VERTICAL, W, S, E, N
+from tkinter import Toplevel, Label, Scrollbar, VERTICAL, W, S, E, N, Listbox, END
 from tkinter.ttk import Treeview
 
 
@@ -14,6 +14,7 @@ class SnakeListView:
         self.window.withdraw()
 
         self.window.protocol("WM_DELETE_WINDOW", self.on_close)
+        self.window.resizable(width=False, height=False)
 
         self.listeners = []
 
@@ -25,9 +26,22 @@ class SnakeListView:
         infotext = "Click on any snake to view its simulation and encoding"
 
         self.info_label = Label(self.window, text=infotext)
-        self.info_label.grid(row=0, column=0)
+        self.info_label.grid(row=0, column=0, columnspan=1, sticky=N+E+S+W)
 
     def create_snake_list(self):
+
+        self.snake_listview_scrollbar = Scrollbar(self.window, orient=VERTICAL)
+        self.snake_listview_scrollbar.grid(row=1, column=1, sticky=N+E+S+W)
+
+        self.snake_listbox = Listbox(self.window)
+        self.snake_listbox.grid(row=1, column=0, sticky=N+E+S+W)
+
+        self.snake_listview_scrollbar.config(command=self.snake_listbox.yview)
+        self.snake_listbox.config(yscrollcommand=self.snake_listview_scrollbar.set)
+
+        self.snake_listbox.bind('<Double-1>', self.click_snake)
+
+        """
         self.items = []
 
         self.snake_treeview = Treeview(self.window, columns=(1, 2, 3))
@@ -45,19 +59,17 @@ class SnakeListView:
         self.snake_treeview.heading(3, text="Score")
 
         self.snake_treeview.bind('<Double-1>', self.click_snake)
+        """
 
     def set_title(self, title):
         self.window.title(title)
 
     def set_snakes(self, snakes):
-        for item in self.items:
-            self.snake_treeview.delete(item)
-        self.items = []
+        self.snake_listbox.delete(0, END)
+
         self.snakes = snakes
-        for i in range(len(self.snakes)):
-            self.items.append(self.snake_treeview.insert("", i, i, text="", values=(self.snakes[i].moves,
-                                                               self.snakes[i].size,
-                                                               self.snakes[i].score)))
+        for snake in self.snakes:
+            self.snake_listbox.insert(END, snake.score)
 
     def add_listener(self, listener):
         self.listeners.append(listener)
@@ -73,11 +85,19 @@ class SnakeListView:
             listener.on_close_snakelist_window(self)
 
     def click_snake(self, event):
+        selections = self.snake_listbox.curselection()
+        if len(selections) > 0:
+            snake = self.snakes[selections[0]]
+            for listener in self.listeners:
+                listener.on_click_snake(snake)
+
+        """
         selection = self.snake_treeview.selection()
         if len(selection) > 0:
             item = selection[0]
             if self.snake_treeview.exists(item):
                 for listener in self.listeners:
                     listener.on_click_snake(self.snakes[int(item)])
+        """
 
 

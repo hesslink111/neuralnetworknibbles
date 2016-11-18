@@ -85,10 +85,6 @@ class SingleSimView:
         for listener in self.listeners:
             listener.on_set_interval(self.interval_slider.get())
 
-    def set_speed(self, speed_value):
-        for listener in self.listeners:
-            listener.on_set_speed(self.speed_slider.get())
-
     def show(self):
         self.window.deiconify()
 
