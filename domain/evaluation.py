@@ -74,7 +74,7 @@ class Game:
 
         if self.board.piece_at(self.gamesnake.position) == -1 or self.board.piece_at(self.gamesnake.position) == 1:
             if (self.gamesnake.position.x == self.mouse.position.x
-                    and self.gamesnake.position.y == self.mouse.position):
+                    and self.gamesnake.position.y == self.mouse.position.y):
                 self.size += 1
                 self.states_reached = []
                 if self.size < 64:

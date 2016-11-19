@@ -41,26 +41,6 @@ class SnakeListView:
 
         self.snake_listbox.bind('<Double-1>', self.click_snake)
 
-        """
-        self.items = []
-
-        self.snake_treeview = Treeview(self.window, columns=(1, 2, 3))
-        self.snake_treeview.grid(row=1, column=0)
-
-        self.snake_treeview_scrollbar = Scrollbar(self.window, orient=VERTICAL)
-        self.snake_treeview_scrollbar.grid(row=1, column=1, sticky=N+E+S+W)
-
-        self.snake_treeview_scrollbar.config(command=self.snake_treeview.yview)
-        self.snake_treeview.config(yscrollcommand=self.snake_treeview_scrollbar.set)
-
-        self.snake_treeview.heading('#0', text="Name")
-        self.snake_treeview.heading(1, text="Moves")
-        self.snake_treeview.heading(2, text="Size")
-        self.snake_treeview.heading(3, text="Score")
-
-        self.snake_treeview.bind('<Double-1>', self.click_snake)
-        """
-
     def set_title(self, title):
         self.window.title(title)
 
@@ -90,14 +70,5 @@ class SnakeListView:
             snake = self.snakes[selections[0]]
             for listener in self.listeners:
                 listener.on_click_snake(snake)
-
-        """
-        selection = self.snake_treeview.selection()
-        if len(selection) > 0:
-            item = selection[0]
-            if self.snake_treeview.exists(item):
-                for listener in self.listeners:
-                    listener.on_click_snake(self.snakes[int(item)])
-        """
 
 
