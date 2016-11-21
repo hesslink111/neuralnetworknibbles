@@ -6,7 +6,8 @@ class SnakeListController:
     """Controller for a Generation and Gene Pool snake list views. Can instantiate a SingleSimController to simulate
         a selected snake."""
 
-    def __init__(self, simulation_service):
+    def __init__(self, simulation_service, uithread):
+        self.uithread = uithread
         self.simulation_service = simulation_service
 
         self.generation_window = SnakeListView("Generation")
@@ -31,5 +32,5 @@ class SnakeListController:
 
     def on_click_snake(self, snake):
         # Open a window showing the snake simulation
-        single_sim_controller = SingleSimController(snake)
+        single_sim_controller = SingleSimController(snake, self.uithread)
 

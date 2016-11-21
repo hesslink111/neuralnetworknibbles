@@ -69,7 +69,7 @@ class Game:
         self.gamesnake.move(snakemove)
 
         # Check if snake still alive
-        if self.moves > 500:
+        if self.moves > 10000:
             self.finished = True
 
         if self.board.piece_at(self.gamesnake.position) == -1 or self.board.piece_at(self.gamesnake.position) == 1:

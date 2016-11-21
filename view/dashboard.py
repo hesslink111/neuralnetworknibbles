@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter.font import nametofont
 
 
 class DashboardWindow:
@@ -14,6 +15,11 @@ class DashboardWindow:
         self.frame.pack()
 
         self.root.resizable(width=False, height=False)
+
+        default_font = nametofont("TkDefaultFont")
+        default_font.configure(family="Courier", size=14)
+
+        self.root.option_add("*Font", default_font)
 
 
     def run(self):

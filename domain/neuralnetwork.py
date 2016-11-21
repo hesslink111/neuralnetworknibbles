@@ -68,7 +68,7 @@ class SnakeNeuralNet:
                         (Direction.right, self.neurons[2][1]),
                         (Direction.down, self.neurons[2][2])]
         choice = reduce(lambda x, y: x if x[1].result > y[1].result else y, final_values)
-        return Direction((self.gamesnake.direction.value + choice[0].value) % 4)
+        return Direction.dir[(self.gamesnake.direction + choice[0]) % 4]
 
 
 class Synapse:

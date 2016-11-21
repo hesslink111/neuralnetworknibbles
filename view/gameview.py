@@ -84,7 +84,8 @@ class SimulationWindow:
         self.generation_label = Label(self.generation_frame, text="Generation: ")
         self.generation_label.grid(row=0, column=0, sticky=W)
 
-        self.view_generation_button = Button(self.generation_frame, text="View Generation", command=self.view_generation)
+        self.view_generation_button = Button(self.generation_frame, text="View Generation",
+                                             command=self.view_generation)
         self.view_generation_button.grid(row=0, column=1, sticky=E)
 
         self.generation_best_label = Label(self.generation_frame, text="Best: ")

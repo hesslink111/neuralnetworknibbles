@@ -67,7 +67,7 @@ class SnakeListView:
     def click_snake(self, event):
         selections = self.snake_listbox.curselection()
         if len(selections) > 0:
-            snake = self.snakes[selections[0]]
+            snake = self.snakes[int(selections[0])]
             for listener in self.listeners:
                 listener.on_click_snake(snake)
 

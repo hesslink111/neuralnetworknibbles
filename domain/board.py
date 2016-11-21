@@ -1,6 +1,3 @@
-from enum import Enum
-
-
 class Board:
     """An 8x8 grid for a simulation. Contains an instance of the xorshift random class. Has helper methods for
         for determining the presence of obstacles or food."""
@@ -46,12 +43,14 @@ class Position:
         self.y = y
 
 
-class Direction(Enum):
-    """An enumeration for the directions right, down, left, and up. Directions are enumerated in clockwise order."""
+class Direction:
+    """An enumeration for the directions right, down, left, and up. Directions are in clockwise order."""
 
     right = 0
     down = 1
     left = 2
     up = 3
+
+    dir = [0, 1, 2, 3]
 
 

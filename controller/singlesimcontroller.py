@@ -8,15 +8,18 @@ from view.singlesimview import SingleSimView
 class SingleSimController:
     """Controller class for controlling the simulation of a single game for a single snake."""
 
-    def __init__(self, snake):
+    def __init__(self, snake, uithread):
+        self.uithread = uithread
         self.snake = snake
         self.evaluation = Evaluation(snake)
 
         self.singlesimview = SingleSimView()
         self.singlesimview.add_listener(self)
-        self.singlesimview.show_game_board(self.evaluation.board,
-                                           self.evaluation.current_game.moves,
-                                           self.evaluation.current_game.score)
+
+        self.uithread.run_on_ui_thread(lambda:
+                                       self.singlesimview.show_game_board(self.evaluation.board,
+                                                                          self.evaluation.current_game.moves,
+                                                                          self.evaluation.current_game.score))
 
         self.simulation_step_loop_lock = Lock()
         self.step_loop_interval = 5
@@ -58,6 +61,8 @@ class SingleSimController:
             self.evaluation.current_game.step()                              # Step the current game
 
         if self.can_update_window:
-            self.singlesimview.show_game_board(self.evaluation.board,
-                                               self.evaluation.current_game.moves,
-                                               self.evaluation.current_game.score)
+            self.uithread.run_on_ui_thread(lambda:
+                                           self.singlesimview.show_game_board(self.evaluation.board,
+                                                                              self.evaluation.current_game.moves,
+                                                                              self.evaluation.current_game.score))
+
