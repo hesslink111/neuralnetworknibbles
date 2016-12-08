@@ -2,13 +2,13 @@
 
 Created by William Pease | [willpease.com](http://willpease.com/resume.html)
 
-Neural Network Nibbles is an environment for evolving simulated brains that play Snake. NNN creates a pool of genetic encodings, which map to neural networks, and then evaluates each based on their performance in a game of Snake. The best genes are added to the gene pool and are used to create the next generation of simulated snakes.
+Neural Network Nibbles (NNN) is an environment for evolving simulated brains that play Snake. NNN creates a pool of genetic encodings, which map to neural networks, and then evaluates each based on their performance in a game of Snake. The best genes are added to the gene pool and are used to create the next generation of simulated snakes.
 
 ## Purpose
 
-- Evaluate artificially intelligence in a game of Snake
-- Use a genetic algorithm to evolve snakes
+- Evaluate artificial intelligence in a game of Snake
 - Create neural networks to simulate a snake brain
+- Use a genetic algorithm to evolve snakes
 - Find the highest scoring artificially evolved snake
 
 ## Neural Network
@@ -17,7 +17,7 @@ The neural network for a snake is a three-layer feed-forward graph of neurons, w
 
 The first layer of neurons consists of inputs based on the state of each position on the game board. An empty space is represented as a 0, a snake segment is a -1, and a mouse is a 1. The inputs on this layer are configured to match the perspective of the simulated snake. As the snake moves, its perspective stays centered on its head, and rotates to match its orientation.
 
-The second/hidden layer contains sigmoid neurons, who sum the input of their synapses and apply the function (1 / ( 1 + e^k )), which results in a new output in the range of (0, 1).
+The second/hidden layer contains sigmoid neurons, who sum the input of their synapses and apply the function (1 / ( 1 + e^-k )), which results in a new output in the range of (0, 1).
 
 The final layer has three neurons representing the movement decision made by the snake. The possible moves are to turn right, left, or continue straight.
 
@@ -29,7 +29,7 @@ In the beginning, 100 random genetic sequences are created and added to the gene
 
 ##### Selection
 
-The selection process for creating a new gene sequence is based on a weighted lottery. Higher scoring snakes from the gene pool are given more tickets in the lottery, and therefore have a higher chance of being selected.
+The selection process for creating a new gene sequence is based on a weighted lottery. Higher scoring snakes from the gene pool are given more tickets in the lottery, and therefore have a higher chance of having their traits passed on to new snakes.
 
 ##### Crossover
 
