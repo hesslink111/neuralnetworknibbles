@@ -33,7 +33,7 @@ The selection process for creating a new gene sequence is based on a weighted lo
 
 ##### Crossover
 
-For each new snake, segments of genetic sequences are copied from the snakes in the gene pool. The size of each segment taken is based on the number of synapses connected to a given neuron. This ensures that traits of high-performing snakes are preserved and transfered to newer generations.
+For each new snake, segments of genetic sequences are copied from the snakes in the gene pool. The size of each segment taken is based on the number of synapses connected to a given neuron. This ensures that traits of high-performing snakes are preserved and transferred to newer generations.
 
 ##### Mutation
 
@@ -41,7 +41,7 @@ There is a 5% chance for any given value in a snake's genetic encoding to become
 
 ## Evaluation
 
-Each generated snake is simulated in an 8x8 game. Every game is procedurally generated based on the same seed value, so each snake will have the oportunity to play the same game. This optimization allows us to compare evaluations based on a single game rather than an average.
+Each generated snake is simulated in an 8x8 game. Every game is procedurally generated based on the same seed value, so each snake will have the opportunity to play the same game. This optimization allows us to compare evaluations based on a single game rather than an average.
 
 The rules of the simulation are the same as the rules of Snake. The simulated snake must avoid moving beyond the boundaries of the board and colliding with obstacles, including colliding with itself. The goal of the game is for the snake to eat as many mice as possible. To deter certain behavior, the simulation is terminated if the snake moves such that a given state of the game board is ever repeated.
 
