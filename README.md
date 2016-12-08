@@ -25,7 +25,7 @@ The first layer of the network is 256, the second is 130, and the third is 3 neu
 
 ## Genetic Algorithm
 
-In the beginning, 100 random genetic sequences are created and added to the gene pool. The first generation generation of snakes is created through a random selection and crossover process. These genes are then mutated slightly, and then passed to the simulation engine to be evaluated. After each generation of snakes is evaluated, the gene pool is updated to include the highest scoring snakes.
+In the beginning, 100 random genetic sequences are created and added to the gene pool. The first generation of snakes is created through a random selection and crossover process. These genes are then mutated slightly, and then passed to the simulation engine to be evaluated. After each generation of snakes is evaluated, the gene pool is updated to include the highest scoring snakes.
 
 ##### Selection
 
