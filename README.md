@@ -11,6 +11,8 @@ Neural Network Nibbles (NNN) is an environment for evolving simulated brains tha
 - Use a genetic algorithm to evolve snakes
 - Find the highest scoring artificially evolved snake
 
+![Full setup](/images/full.PNG?raw=true)
+
 ## Neural Network
 
 The neural network for a snake is a three-layer feed-forward graph of neurons, with each node of each layer connected to each node of the previous layer by synapses. Neurons aggregate signals from the previous layer, while synapses apply a weight in the range of (-1, 1) to the signal they carry from one neuron to another.
@@ -46,3 +48,13 @@ Each generated snake is simulated in an 8x8 game. Every game is procedurally gen
 The rules of the simulation are the same as the rules of Snake. The simulated snake must avoid moving beyond the boundaries of the board and colliding with obstacles, including colliding with itself. The goal of the game is for the snake to eat as many mice as possible. To deter certain behavior, the simulation is terminated if the snake moves such that a given state of the game board is ever repeated.
 
 The snake is evaluated based on its score in the game. To encourage movement and staying within the boundaries, points are given for each successful move. To encourage growth, the amount of points given for each move is based on the square of the length of the snake during that move.
+
+## Screenshots
+
+![Simulation Window Screenshot 1](/images/simwindow1.PNG?raw=true "Simulation window")
+
+![Simulation Window Screenshot 2](/images/simwindow2.PNG?raw=true)
+
+![Gene Pool](/images/genepool.PNG?raw=true "Gene pool view")
+
+![Single Evaluation](/images/singleevaluation.PNG?raw=true "Single evaluation")
