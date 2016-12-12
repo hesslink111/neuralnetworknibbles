@@ -10,10 +10,10 @@ class XorShift:
         y = self.state[1]
 
         self.state[0] = y
-        x ^= x << 23 & 0xFFFFFFFF
+        x ^= (x << 23) & 0x7FFFFFFF
         self.state[1] = x ^ y ^ (x >> 17) ^ (y >> 26)
 
-        return self.state[1] + y
+        return self.state[1] + y & 0x7FFFFFFF
 
     def randrange(self, start, stop):
         return (self.random() % (stop - start)) + start
