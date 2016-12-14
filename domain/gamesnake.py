@@ -1,4 +1,5 @@
-from domain.board import Position, Direction
+from domain.direction import Direction
+from domain.position import Position
 
 
 class GameSnake:

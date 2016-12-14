@@ -2,7 +2,7 @@ from copy import deepcopy
 from domain.board import Board
 from domain.mouse import Mouse
 from domain.gamesnake import GameSnake
-from domain.neuralnetwork import SnakeNeuralNet
+from domain.snakeneuralnet import SnakeNeuralNet
 from util.xorshift import XorShift
 
 

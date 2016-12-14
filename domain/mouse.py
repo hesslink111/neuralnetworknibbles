@@ -1,4 +1,4 @@
-from domain.board import Position
+from domain.position import Position
 
 
 class Mouse:
