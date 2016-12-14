@@ -1,6 +1,6 @@
 from functools import reduce
 
-from domain.GameBoardRelativePositionStateNeuron import GameBoardRelativePositionStateNeuron
+from domain.gameboardrelativepositionstateneuron import GameBoardRelativePositionStateNeuron
 from domain.direction import Direction
 from domain.neuron import Neuron
 from domain.position import Position
